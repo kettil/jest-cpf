@@ -1,0 +1,16 @@
+# mac
+.DS_STORE
+._*
+
+# node.js
+node_modules
+docs
+
+# tools
+coverage
+.eslintcache
+
+# application
+build
+tmp
+.env

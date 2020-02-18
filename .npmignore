@@ -1,0 +1,20 @@
+# folder
+bin
+coverage
+example
+examples
+docs
+src
+tests
+
+# files
+.DS_Store
+.eslint*
+.editorconfig
+.gitignore
+.gitlab-ci.yml
+.huskyrc
+.prettier*
+docker*
+jest*
+tsconfig*

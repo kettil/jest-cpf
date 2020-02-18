@@ -1,0 +1,29 @@
+{
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.json",
+      "diagnostics": {
+        "warnOnly": true
+      }
+    }
+  },
+
+  "preset": "ts-jest",
+  "testMatch": ["**/*.test.{js,jsx,ts,tsx}"],
+  "roots": ["<rootDir>/src/", "<rootDir>/tests/"],
+
+  "resetMocks": true,
+  "clearMocks": true,
+
+  "collectCoverageFrom": ["src/**/*.{ts,tsx,js,jsx}"],
+  "coverageReporters": ["text-summary", "html"],
+  "coverageDirectory": "coverage",
+  "coverageThreshold": {
+    "global": {
+      "branches": 90,
+      "functions": 90,
+      "lines": 90,
+      "statements": 90
+    }
+  }
+}

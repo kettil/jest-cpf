@@ -1,7 +1,7 @@
 {
   "name": "jest-cpf",
   "version": "0.1.0",
-  "description": "Jest: Coverage each file",
+  "description": "Generates a coverage per file overview",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "bin": "build/bin/jest-cpf.js",

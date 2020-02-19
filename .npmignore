@@ -1,5 +1,4 @@
 # folder
-bin
 coverage
 example
 examples
@@ -11,8 +10,7 @@ tests
 .DS_Store
 .eslint*
 .editorconfig
-.gitignore
-.gitlab-ci.yml
+.git*
 .huskyrc
 .prettier*
 docker*

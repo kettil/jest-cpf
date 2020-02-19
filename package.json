@@ -5,7 +5,6 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "bin": "build/bin/jest-cpf.js",
-  "private": true,
   "scripts": {
     "build": "tsc --project ./tsconfig.build.json",
     "prebuild": "rm -rf ./build",
@@ -26,7 +25,7 @@
     "deploy:major": "npm run deploy:pre && npm version major -m 'Release of version v%s' && npm run deploy:post",
     "deploy:minor": "npm run deploy:pre && npm version minor -m 'Release of version v%s' && npm run deploy:post",
     "deploy:patch": "npm run deploy:pre && npm version patch -m 'Release of version v%s' && npm run deploy:post",
-    "deploy:pre": "npm run lint && test:all && npm run build",
+    "deploy:pre": "npm run lint && test && npm run build",
     "deploy:post": "git push && git push --tags && npm publish"
   },
   "keywords": [

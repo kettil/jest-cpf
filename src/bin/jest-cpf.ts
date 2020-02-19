@@ -4,6 +4,6 @@
 
 import { argv } from 'yargs';
 import { outputError } from '../lib/outputs';
-import main from '..';
+import main from '../lib/app';
 
 main(process.argv.splice(2), argv).catch(outputError);

@@ -140,6 +140,8 @@
         "import/default": "off",
         "import/no-unused-modules": ["error", { "unusedExports": true, "missingExports": false }],
 
+        "@typescript-eslint/require-await": "off",
+
         "jest/consistent-test-it": ["error", { "fn": "test", "withinDescribe": "test" }],
         "jest/lowercase-name": ["error"],
         "jest/no-alias-methods": ["error"],

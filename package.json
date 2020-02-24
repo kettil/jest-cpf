@@ -40,6 +40,14 @@
   ],
   "author": "Kjell Dießel <development@kettil.de>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kettil/jest-cpf"
+  },
+  "homepage": "https://github.com/kettil/jest-cpf",
+  "bugs": {
+    "url": "https://github.com/kettil/jest-cpf/issues/new"
+  },
   "devDependencies": {
     "@types/cli-progress": "^3.4.2",
     "@types/glob": "^7.1.1",

@@ -30,7 +30,7 @@ All arguments from the call are passed 1-to-1 to Jest.
 The following options are read from the jest config file:
 
 - `testMatch`
-- `vcollectCoverageFrom`
+- `collectCoverageFrom`
 - `coverageDirectory` _(optional)_
 - `coveragePathIgnorePatterns` _(optional)_
 - `coverageThreshold.global` _(optional, default value 95%)_

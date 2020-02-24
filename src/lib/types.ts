@@ -12,6 +12,27 @@ export type RunnerType = {
   } & ExtendPromiseType<string>;
 };
 
+export type RunnerEvaluationDataType = {
+  thresholds: ThresholdGroupType[];
+  config: JestConfigType;
+  barIncrement: BarReturnType['increment'];
+};
+
+export type RunnerInitializationDataType = {
+  testFiles: string[];
+  argvArray: string[];
+  configFile: string;
+  config: JestConfigType;
+  command: string;
+};
+
+export type RunnerDataType = RunnerEvaluationDataType & RunnerInitializationDataType;
+
+export type BarReturnType = {
+  increment: () => void;
+  stop: () => void;
+};
+
 export type JestConfigType = {
   testMatch: string[];
   rootDir: string;

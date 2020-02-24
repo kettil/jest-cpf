@@ -10,7 +10,17 @@ export const readJsonFile = async (filename: string) => {
   }
 
   return new Promise<Record<string, unknown>>((resolve, reject) => {
-    readFile(filename, { encoding: 'utf8' }, (error, data) => (error ? reject(error) : resolve(JSON.parse(data))));
+    readFile(filename, { encoding: 'utf8' }, (error, data) => {
+      if (error) {
+        return reject(error);
+      }
+
+      try {
+        return resolve(JSON.parse(data));
+      } catch (error_) {
+        return reject(error_);
+      }
+    });
   });
 };
 

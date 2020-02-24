@@ -6,7 +6,7 @@ import { table } from 'table';
 import { TestError, padLeft, color, mapPerLine } from './helper';
 import createTableData from './threshold/createTableData';
 import { tableConfig } from './threshold/settings';
-import { OutputOptionsType, ThresholdColorType, ThresholdGroupType } from './types';
+import { OutputOptionsType, ThresholdColorType, ThresholdGroupType, BarReturnType } from './types';
 
 export const outputError = (error: unknown) => {
   if (error instanceof Error) {
@@ -41,7 +41,7 @@ export const outputMetrics = (status: Record<ThresholdColorType, number>, option
   console.log('');
 };
 
-export const outputProgress = (count: number) => {
+export const outputProgress = (count: number): BarReturnType => {
   const bar = new SingleBar({
     format: `${color('{bar}')} {percentage}% | {value}/{total} Files`,
     barCompleteChar: '\u2588',

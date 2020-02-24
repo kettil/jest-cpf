@@ -18,6 +18,7 @@
   "collectCoverageFrom": ["src/**/*.{ts,tsx,js,jsx}"],
   "coverageReporters": ["text-summary", "html"],
   "coverageDirectory": "coverage",
+  "coveragePathIgnorePatterns": ["/types.ts"],
   "coverageThreshold": {
     "global": {
       "branches": 90,

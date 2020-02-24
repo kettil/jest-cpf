@@ -1,6 +1,6 @@
-export const cleanUpByPatterns = (files: string[], patterns: string[], rootDirection: string) =>
+export const cleanUpByPatterns = (files: string[], patterns: string[], rootPath: string) =>
   patterns
-    .map((pattern) => new RegExp(pattern.replace('<rootDir>', rootDirection)))
+    .map((pattern) => new RegExp(pattern.replace('<rootDir>', rootPath)))
     .reduce((reduceFiles, pattern) => reduceFiles.filter((file) => !pattern.test(file)), files);
 
 export const cleanUpByFiles = (files: string[], testFiles: string[]) => {

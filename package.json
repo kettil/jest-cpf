@@ -17,7 +17,7 @@
     "git:change": "npm install",
     "git:commit": "npm run prettier:ci && npm run lint:ci",
     "git:push": "npm run git:commit && npm run test:ci",
-    "lint": "eslint --config .eslintrc.json --ext=ts,tsx --cache --fix .",
+    "lint": "eslint --config .eslintrc.json --ext=ts,tsx --fix .",
     "lint:ci": "eslint --config .eslintrc.json --ext=ts,tsx --format codeframe .",
     "prelint": "npm run prettier",
     "prettier": "prettier --config './.prettierrc' --write '.huskyrc' '.prettierrc' './**/*.{ts,tsx,js,jsx,json,md,scss,yml,html}'",
@@ -36,7 +36,9 @@
     "integration",
     "integration test",
     "test",
-    "testing"
+    "testing",
+    "per file",
+    "separate coverage"
   ],
   "author": "Kjell Dießel <development@kettil.de>",
   "license": "MIT",

@@ -9,7 +9,7 @@ const spawnOnMock = jest.fn();
 const stdoutOnMock = jest.fn();
 const stderrOnMock = jest.fn();
 
-describe('check the function runnerSpawn()', () => {
+describe('runnerSpawn()', () => {
   beforeEach(() => {
     spawnMock.mockReturnValue({
       stdout: { on: stdoutOnMock },
@@ -18,7 +18,7 @@ describe('check the function runnerSpawn()', () => {
     });
   });
 
-  test('it should ... when ...', async () => {
+  test('it should work with success finished task', async () => {
     expect.assertions(11);
 
     stdoutOnMock.mockImplementation(async (event: unknown, callback: (data: string) => void) => {
@@ -65,7 +65,7 @@ describe('check the function runnerSpawn()', () => {
     expect(spawnOnMock).toHaveBeenCalledTimes(1);
   });
 
-  test('it should ... when ... 2', async () => {
+  test('it should work with faulty finished task', async () => {
     expect.assertions(11);
 
     stdoutOnMock.mockImplementation(async (event: unknown, callback: (data: string) => void) => {

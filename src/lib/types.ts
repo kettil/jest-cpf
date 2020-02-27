@@ -1,7 +1,8 @@
-import { DateTime } from 'luxon';
 import { thresholdKeys } from './threshold/settings';
 
 export type ExtendPromiseType<T> = { promise: Promise<T | Error>; isPending: () => boolean };
+
+export type ArgvObjectType = { config?: string; [x: string]: unknown };
 
 export type RunnerType = {
   configFile: string;
@@ -39,20 +40,13 @@ export type JestConfigType = {
   roots: string[];
 
   collectCoverage: true;
+  collectCoverageFrom: string[];
   coverageDirectory: string;
   coverageReporters: string[];
   coverageThreshold: { global: ThresholdType<number> };
   coveragePathIgnorePatterns: string[];
 
   [x: string]: unknown;
-};
-
-export type OutputOptionsType = {
-  runTime: DateTime;
-  cwdDir: string;
-  cpuCount: number;
-  cpuUsed: number;
-  thresholdLimits: ThresholdType<number>;
 };
 
 export type CoverageSummaryType = {
@@ -73,3 +67,9 @@ export type ThresholdGroupType<T = ThresholdValueType> = {
   threshold: ThresholdType<T>;
   error?: unknown;
 };
+
+//
+// helper
+//
+
+export type UnpackedPromise<T> = T extends Promise<infer U> ? U : T;

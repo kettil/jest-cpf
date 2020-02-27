@@ -1,5 +1,5 @@
 import { getJestFilename } from '../files/jest';
-import { delay } from '../helper';
+import { delay } from '../helpers/commons';
 import { outputProgress } from '../outputs';
 import { RunnerType, JestConfigType, ThresholdGroupType, RunnerDataType } from '../types';
 import runnerEvaluation from './runnerEvaluation';

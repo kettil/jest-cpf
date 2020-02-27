@@ -1,35 +1,26 @@
 import { normalize } from 'path';
-import { isGlobalThreshold } from './helper';
+import { isGlobalThreshold } from './helpers/is';
 import { thresholdKeys } from './threshold/settings';
-import { JestConfigType, OutputOptionsType, ThresholdType } from './types';
+import { JestConfigType, ThresholdType } from './types';
 
-const normalizeConfig = (
-  config: Record<string, unknown>,
-  options: OutputOptionsType,
-): { config: JestConfigType; coverageFrom: string[]; thresholdLimits: Partial<ThresholdType<number>> } => {
-  if (!Array.isArray(config.testMatch)) {
-    throw new TypeError('The jest config parameter "testMatch" is missing');
-  }
+export const getCoverageDirectory = (config: Record<string, unknown>) =>
+  typeof config.coverageDirectory === 'string' ? config.coverageDirectory : '.coverage';
 
-  if (!Array.isArray(config.collectCoverageFrom)) {
-    throw new TypeError('The jest config parameter "collectCoverageFrom" is missing');
-  }
+export const getCoveragePathIgnorePatterns = (config: Record<string, unknown>) =>
+  Array.isArray(config.coveragePathIgnorePatterns) ? config.coveragePathIgnorePatterns : [];
 
-  // eslint-disable-next-line unicorn/prevent-abbreviations
-  const rootDir = typeof config.rootDir === 'string' ? normalize(config.rootDir) : options.cwdDir;
-  const testMatch = config.testMatch;
-  const coverageFrom = config.collectCoverageFrom;
-  const coverageDirectory = typeof config.coverageDirectory === 'string' ? config.coverageDirectory : '.coverage';
-  const coveragePathIgnore = Array.isArray(config.coveragePathIgnorePatterns) ? config.coveragePathIgnorePatterns : [];
+export const getRootDirectory = (config: Record<string, unknown>, cwdDirectory: string) =>
+  typeof config.rootDir === 'string' ? normalize(config.rootDir) : cwdDirectory;
 
-  let roots;
-
+export const getRoots = (config: Record<string, unknown>, rootDirectory: string) => {
   if (Array.isArray(config.roots)) {
-    roots = config.roots.map((path) => path.replace('<rootDir>', normalize(rootDir)));
-  } else {
-    roots = [rootDir];
+    return config.roots.map((path) => path.replace('<rootDir>', normalize(rootDirectory)));
   }
 
+  return [rootDirectory];
+};
+
+export const getThresholdLimits = (config: Record<string, unknown>) => {
   const thresholdLimits: Partial<ThresholdType<number>> = {};
 
   if (isGlobalThreshold(config.coverageThreshold)) {
@@ -44,22 +35,46 @@ const normalizeConfig = (
     });
   }
 
+  return thresholdLimits;
+};
+
+const normalizeConfig = (
+  config: Record<string, unknown>,
+  cwdDirectory: string,
+): JestConfigType & { thresholdLimits: Partial<ThresholdType<number>> } => {
+  if (!Array.isArray(config.testMatch)) {
+    throw new TypeError('The jest config parameter "testMatch" is missing');
+  }
+
+  if (!Array.isArray(config.collectCoverageFrom)) {
+    throw new TypeError('The jest config parameter "collectCoverageFrom" is missing');
+  }
+
+  // eslint-disable-next-line unicorn/prevent-abbreviations
+  const rootDir = getRootDirectory(config, cwdDirectory);
+  const roots = getRoots(config, rootDir);
+  const testMatch = config.testMatch;
+  const collectCoverageFrom = config.collectCoverageFrom;
+  const coverageDirectory = getCoverageDirectory(config);
+  const coveragePathIgnorePatterns = getCoveragePathIgnorePatterns(config);
+
+  const thresholdLimits = getThresholdLimits(config);
+
   return {
-    coverageFrom,
+    ...config,
+
+    testMatch,
+    rootDir,
+    roots,
+
+    collectCoverage: true,
+    collectCoverageFrom,
+    coverageDirectory,
+    coverageReporters: ['json-summary'],
+    coverageThreshold: { global: { branches: 0, functions: 0, lines: 0, statements: 0 } },
+    coveragePathIgnorePatterns,
+
     thresholdLimits,
-    config: {
-      ...config,
-
-      testMatch,
-      rootDir,
-      roots,
-
-      collectCoverage: true,
-      coverageDirectory,
-      coverageReporters: ['json-summary'],
-      coverageThreshold: { global: { branches: 0, functions: 0, lines: 0, statements: 0 } },
-      coveragePathIgnorePatterns: coveragePathIgnore,
-    },
   };
 };
 

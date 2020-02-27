@@ -1,4 +1,4 @@
-import { TestError } from '../helper';
+import { TestError } from '../helpers/errors';
 import extract from '../threshold/extract';
 import { RunnerType, RunnerEvaluationDataType, JestConfigType, ThresholdGroupType } from '../types';
 import runnerEvaluation from './runnerEvaluation';
@@ -9,8 +9,8 @@ const extractMock = extract as jest.Mock;
 const barIncrementMock = jest.fn();
 const isPendingMock = jest.fn();
 
-describe('check the function runnerEvaluation()', () => {
-  test('it should be "isPending" false and threshold list is extended when the runner test instance is defined and promise value is a string', async () => {
+describe('runnerEvaluation()', () => {
+  test('it should work with success finished task', async () => {
     expect.assertions(5);
 
     isPendingMock.mockReturnValue(false);
@@ -44,7 +44,7 @@ describe('check the function runnerEvaluation()', () => {
     expect(barIncrementMock).toHaveBeenCalledTimes(1);
   });
 
-  test('it should be "isPending" false and threshold list is extended when the runner test instance is defined and promise value is an error', async () => {
+  test('it should work with faulty finished task', async () => {
     expect.assertions(5);
 
     isPendingMock.mockReturnValue(false);
@@ -82,7 +82,7 @@ describe('check the function runnerEvaluation()', () => {
     expect(barIncrementMock).toHaveBeenCalledTimes(1);
   });
 
-  test('it should be "isPending" true and threshold list is not extended when the runner test instance is defined and pending is true', async () => {
+  test('it should work with pending task', async () => {
     expect.assertions(4);
 
     isPendingMock.mockReturnValue(true);
@@ -110,7 +110,7 @@ describe('check the function runnerEvaluation()', () => {
     expect(barIncrementMock).toHaveBeenCalledTimes(0);
   });
 
-  test('it should be "isPending" false and threshold list is not extended when the runner test instance is not defined', async () => {
+  test('it should work without task', async () => {
     expect.assertions(4);
 
     const runner: RunnerType = {

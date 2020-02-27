@@ -6,8 +6,8 @@ jest.mock('/data/config.json', () => ({ q: 42, config: 'file' }), { virtual: tru
 
 const hasFileAccessMock = hasFileAccess as jest.Mock;
 
-describe('check the function cleanUpByPatterns()', () => {
-  test('it should return a config object when the file exists', async () => {
+describe('getJestConfig()', () => {
+  test('it should work with existing file', async () => {
     hasFileAccessMock.mockResolvedValue(true);
 
     const promise = getJestConfig('/data', 'config.json');
@@ -18,7 +18,7 @@ describe('check the function cleanUpByPatterns()', () => {
     expect(hasFileAccess).toHaveBeenCalledWith(expect.any(String), 4);
   });
 
-  test('it should return a config object when the file non-exists', async () => {
+  test('it should throw an error', async () => {
     hasFileAccessMock.mockResolvedValue(false);
 
     const promise = getJestConfig('/data', 'not-exist.json');
@@ -30,8 +30,8 @@ describe('check the function cleanUpByPatterns()', () => {
   });
 });
 
-describe('check the function getJestFilename()', () => {
-  test('it should return the path of jest on the same level when a path is passed', async () => {
+describe('getJestFilename()', () => {
+  test('it should work with the current folder', async () => {
     hasFileAccessMock.mockResolvedValue(true);
 
     const promise = getJestFilename('/path/to/jest');
@@ -42,7 +42,7 @@ describe('check the function getJestFilename()', () => {
     expect(hasFileAccess).toHaveBeenCalledWith('/path/to/jest/node_modules/.bin/jest', 1);
   });
 
-  test('it should return the path of jest on another level when a path is passed', async () => {
+  test('it should work with another folder', async () => {
     hasFileAccessMock.mockResolvedValueOnce(false);
     hasFileAccessMock.mockResolvedValueOnce(false);
     hasFileAccessMock.mockResolvedValue(true);
@@ -57,7 +57,7 @@ describe('check the function getJestFilename()', () => {
     expect(hasFileAccess).toHaveBeenNthCalledWith(3, '/path/node_modules/.bin/jest', 1);
   });
 
-  test('it should return "jest" when a path is passed', async () => {
+  test('it should work with default path', async () => {
     hasFileAccessMock.mockResolvedValue(false);
 
     const promise = getJestFilename('/path/to/jest');

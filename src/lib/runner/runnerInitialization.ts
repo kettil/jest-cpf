@@ -1,4 +1,5 @@
-import { extendPromise, cleanFileFromExtensions } from '../helper';
+import { extendPromise } from '../helpers/commons';
+import { cleanFileFromExtensions } from '../helpers/string';
 import { RunnerType, RunnerInitializationDataType } from '../types';
 import runnerSpawn from './runnerSpawn';
 

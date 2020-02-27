@@ -18,7 +18,7 @@ const runnerInitializationMock = runnerInitialization as jest.Mock;
 const barIncrementMock = jest.fn();
 const barStopMock = jest.fn();
 
-describe('check the function runTests()', () => {
+describe('runTests()', () => {
   beforeEach(() => {
     getJestFilenameMock.mockReturnValue('path/to/jest');
 
@@ -28,7 +28,7 @@ describe('check the function runTests()', () => {
     });
   });
 
-  test('it should thresholds list was created when one or more test files exists', async () => {
+  test('it should work with test files', async () => {
     expect.assertions(6);
 
     runnerEvaluationMock.mockResolvedValueOnce(false);

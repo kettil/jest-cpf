@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app() it should work with faulty tests: appEvaluation 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "time": "object",
+      },
+      Object {
+        "data": "fromExecute",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Object {
+        "error": 3,
+        "success": 97,
+      },
+    },
+  ],
+}
+`;
+
+exports[`app() it should work with faulty tests: appExecute 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Array [
+        "--config",
+        "/path/to/config.json",
+      ],
+      Object {
+        "config": "/path/to/config.json",
+      },
+      "/path/to/project",
+      4,
+      3,
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;

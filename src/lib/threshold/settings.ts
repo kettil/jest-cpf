@@ -3,7 +3,7 @@ import { ThresholdValueType, ThresholdType } from '../types';
 
 export const thresholdKeys = ['statements', 'branches', 'functions', 'lines'] as const;
 
-export const thresholdLimits = {
+export const thresholdDefaultLimits = {
   branches: 95,
   functions: 95,
   lines: 95,
@@ -19,8 +19,10 @@ export const thresholdForFilesWithoutTests: ThresholdType = {
   statements: thresholdValue,
 };
 
+export const drawHorizontalLine = (index: number, size: number) => index === 0 || index === 1 || index === size;
+
 export const tableConfig: TableUserConfig = {
-  drawHorizontalLine: (index, size) => index === 0 || index === 1 || index === size,
+  drawHorizontalLine,
   columns: {
     0: { alignment: 'right' },
     1: { alignment: 'left' },

@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import { TestError } from '../helper';
+import { TestError } from '../helpers/errors';
 import { JestConfigType } from '../types';
 
 const runnerSpawn = (command: string, args: string[], config: JestConfigType) =>

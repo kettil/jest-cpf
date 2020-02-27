@@ -6,8 +6,8 @@ jest.mock('fs');
 const accessMock = (access as unknown) as jest.Mock;
 const mkdirMock = (mkdir as unknown) as jest.Mock;
 
-describe('check the function hasFileAccess()', () => {
-  test('it should return the true value when file is exists', async () => {
+describe('hasFileAccess()', () => {
+  test('it should work with file exists', async () => {
     expect.assertions(4);
 
     accessMock.mockImplementation(async (file: unknown, mode: unknown, callback: (error?: unknown) => void) => {
@@ -23,7 +23,7 @@ describe('check the function hasFileAccess()', () => {
     await expect(promise).resolves.toBe(true);
   });
 
-  test('it should return the false value when file is not exist', async () => {
+  test('it should work with non-existent file', async () => {
     expect.assertions(4);
 
     accessMock.mockImplementation(async (file: unknown, mode: unknown, callback: (error?: unknown) => void) => {
@@ -40,8 +40,8 @@ describe('check the function hasFileAccess()', () => {
   });
 });
 
-describe('check the function createFolder()', () => {
-  test('it should create a folder and return the pathname when "name" is a string', async () => {
+describe('createFolder()', () => {
+  test('it should created a folder with strings', async () => {
     expect.assertions(4);
 
     mkdirMock.mockImplementation(async (file: unknown, options: unknown, callback: (error?: unknown) => void) => {
@@ -57,7 +57,7 @@ describe('check the function createFolder()', () => {
     await expect(promise).resolves.toBe('path/to/folder/folderName');
   });
 
-  test('it should create a folder and return the extenden pathname when "name" is a number', async () => {
+  test('it should created a folder with a number', async () => {
     expect.assertions(4);
 
     mkdirMock.mockImplementation(async (file: unknown, options: unknown, callback: (error?: unknown) => void) => {
@@ -73,7 +73,7 @@ describe('check the function createFolder()', () => {
     await expect(promise).resolves.toBe('path/to/folder/child-2');
   });
 
-  test('it should throw an error when an error occurs during creation', async () => {
+  test('it should throw an error', async () => {
     expect.assertions(4);
 
     mkdirMock.mockImplementation(async (file: unknown, options: unknown, callback: (error?: unknown) => void) => {

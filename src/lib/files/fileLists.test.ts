@@ -5,8 +5,8 @@ jest.mock('./fileList');
 
 const getFileListMock = getFileList as jest.Mock;
 
-describe('check the function getFileLists()', () => {
-  test('it should return the file list when files are found', async () => {
+describe('getFileLists()', () => {
+  test('it should work with found files', async () => {
     expect.assertions(2);
 
     getFileListMock.mockResolvedValueOnce(['src/index.test.ts', 'src/lib/app.test.ts']);
@@ -31,7 +31,7 @@ describe('check the function getFileLists()', () => {
     expect(getFileListMock).toHaveBeenCalledTimes(4);
   });
 
-  test('it should return the file list when no files are found', async () => {
+  test('it should work with not found files', async () => {
     expect.assertions(2);
 
     getFileListMock.mockResolvedValue([]);
@@ -47,7 +47,7 @@ describe('check the function getFileLists()', () => {
     expect(getFileListMock).toHaveBeenCalledTimes(2);
   });
 
-  test('it should throw an error when an error occurs during creation', async () => {
+  test('it should throw an error', async () => {
     expect.assertions(2);
 
     getFileListMock.mockRejectedValueOnce(new Error('glob-error'));

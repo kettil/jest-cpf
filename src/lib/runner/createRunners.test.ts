@@ -1,6 +1,5 @@
-import { DateTime } from 'luxon';
 import { createFolder } from '../files/fileSystems';
-import { JestConfigType, OutputOptionsType } from '../types';
+import { JestConfigType } from '../types';
 import createRunner from './createRunner';
 import createRunners from './createRunners';
 
@@ -10,8 +9,8 @@ jest.mock('./createRunner');
 const createFolderMock = createFolder as jest.Mock;
 const createRunnerMock = createRunner as jest.Mock;
 
-describe('check the function createRunners()', () => {
-  test('it should return a list with two runners when two CPUs are used', async () => {
+describe('createRunners()', () => {
+  test('it should created a runner list', async () => {
     expect.assertions(6);
 
     createFolderMock.mockResolvedValue('/path/to/coverage');
@@ -26,6 +25,7 @@ describe('check the function createRunners()', () => {
 
     const config: JestConfigType = {
       collectCoverage: true,
+      collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}'],
       coverageDirectory: '/path/to/coverage',
       coveragePathIgnorePatterns: [],
       coverageReporters: [],
@@ -35,15 +35,7 @@ describe('check the function createRunners()', () => {
       testMatch: [],
     };
 
-    const options: OutputOptionsType = {
-      cpuCount: 4,
-      cpuUsed: 2,
-      cwdDir: '/path/to/project',
-      runTime: DateTime.utc(),
-      thresholdLimits: { statements: 100, lines: 100, functions: 100, branches: 100 },
-    };
-
-    const promise = createRunners({ ...config }, { ...options });
+    const promise = createRunners({ ...config }, 2);
 
     await expect(promise).resolves.toEqual([
       {

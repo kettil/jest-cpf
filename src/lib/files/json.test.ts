@@ -9,7 +9,7 @@ const hasFileAccessMock = hasFileAccess as jest.Mock;
 const readFileMock = (readFile as unknown) as jest.Mock;
 const writeFileMock = (writeFile as unknown) as jest.Mock;
 
-describe('check the function readJsonFile()', () => {
+describe('readJsonFile()', () => {
   const file = './unknown/read.json';
 
   let readFn: (f: unknown, o: unknown, callback: (e?: unknown, d?: unknown) => void) => Promise<void>;
@@ -29,7 +29,7 @@ describe('check the function readJsonFile()', () => {
     };
   });
 
-  test('it should return a json object when the file is exists', async () => {
+  test('it should work', async () => {
     expect.assertions(7);
 
     readCallbackData = '{"a":42,"b":"z"}';
@@ -46,24 +46,7 @@ describe('check the function readJsonFile()', () => {
     expect(hasFileAccess).toHaveBeenCalledWith(file, 4);
   });
 
-  test('it should throw an error when the file is read incorrectly', async () => {
-    expect.assertions(7);
-
-    readCallbackError = new Error('Read error');
-
-    hasFileAccessMock.mockResolvedValue(true);
-    readFileMock.mockImplementation(readFn);
-
-    const promise = readJsonFile(file);
-
-    await expect(promise).rejects.toThrow('Read error');
-
-    expect(readFileMock).toHaveBeenCalledTimes(1);
-    expect(hasFileAccess).toHaveBeenCalledTimes(1);
-    expect(hasFileAccess).toHaveBeenCalledWith(file, 4);
-  });
-
-  test('it should throw an error when the file has a faulty json', async () => {
+  test('it should throw an error by the json parsing', async () => {
     expect.assertions(7);
 
     readCallbackData = '{"a":42,"b":"z}';
@@ -80,7 +63,7 @@ describe('check the function readJsonFile()', () => {
     expect(hasFileAccess).toHaveBeenCalledWith(file, 4);
   });
 
-  test('it should throw an error when the file is not exist', async () => {
+  test('it should throw an error by a non-readable file', async () => {
     expect.assertions(4);
 
     hasFileAccessMock.mockResolvedValue(false);
@@ -93,9 +76,26 @@ describe('check the function readJsonFile()', () => {
     expect(hasFileAccess).toHaveBeenCalledTimes(1);
     expect(hasFileAccess).toHaveBeenCalledWith(file, 4);
   });
+
+  test('it should throw an error by readfile()', async () => {
+    expect.assertions(7);
+
+    readCallbackError = new Error('Read error');
+
+    hasFileAccessMock.mockResolvedValue(true);
+    readFileMock.mockImplementation(readFn);
+
+    const promise = readJsonFile(file);
+
+    await expect(promise).rejects.toThrow('Read error');
+
+    expect(readFileMock).toHaveBeenCalledTimes(1);
+    expect(hasFileAccess).toHaveBeenCalledTimes(1);
+    expect(hasFileAccess).toHaveBeenCalledWith(file, 4);
+  });
 });
 
-describe('check the function writeJsonFile()', () => {
+describe('writeJsonFile()', () => {
   const file = './unknown/write.json';
 
   let writeFn: (f: unknown, d: unknown, o: unknown, callback: (e?: unknown) => void) => Promise<void>;
@@ -116,7 +116,7 @@ describe('check the function writeJsonFile()', () => {
     };
   });
 
-  test('it should write the json object in the file when writing to the folder is allowed', async () => {
+  test('it should work', async () => {
     expect.assertions(8);
 
     writeCallbackData = '{\n  "z": 42,\n  "y": "a"\n}';
@@ -133,7 +133,21 @@ describe('check the function writeJsonFile()', () => {
     expect(hasFileAccess).toHaveBeenCalledWith('./unknown', 2);
   });
 
-  test('it should throw an error when the file is write incorrectly', async () => {
+  test('it should throw an error by non-writable file', async () => {
+    expect.assertions(4);
+
+    hasFileAccessMock.mockResolvedValue(false);
+
+    const promise = writeJsonFile(file, { a: 42, b: 'z' });
+
+    await expect(promise).rejects.toThrow('File ./unknown/write.json is not writable');
+
+    expect(writeFileMock).toHaveBeenCalledTimes(0);
+    expect(hasFileAccess).toHaveBeenCalledTimes(1);
+    expect(hasFileAccess).toHaveBeenCalledWith('./unknown', 2);
+  });
+
+  test('it should throw an error by writeFile()', async () => {
     expect.assertions(8);
 
     writeCallbackError = new Error('Write error');
@@ -147,20 +161,6 @@ describe('check the function writeJsonFile()', () => {
     await expect(promise).rejects.toThrow('Write error');
 
     expect(writeFileMock).toHaveBeenCalledTimes(1);
-    expect(hasFileAccess).toHaveBeenCalledTimes(1);
-    expect(hasFileAccess).toHaveBeenCalledWith('./unknown', 2);
-  });
-
-  test('it should throw an error when the file is not writable', async () => {
-    expect.assertions(4);
-
-    hasFileAccessMock.mockResolvedValue(false);
-
-    const promise = writeJsonFile(file, { a: 42, b: 'z' });
-
-    await expect(promise).rejects.toThrow('File ./unknown/write.json is not writable');
-
-    expect(writeFileMock).toHaveBeenCalledTimes(0);
     expect(hasFileAccess).toHaveBeenCalledTimes(1);
     expect(hasFileAccess).toHaveBeenCalledWith('./unknown', 2);
   });

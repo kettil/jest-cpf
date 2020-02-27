@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`appEvaluation() it should work: evaluationFiles 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Array [
+        Object {
+          "file": "/path/to/project/src/index.ts",
+          "threshold": Object {
+            "branches": Object {
+              "percent": 90,
+              "uncovered": 3,
+            },
+            "functions": Object {
+              "percent": 90,
+              "uncovered": 3,
+            },
+            "lines": Object {
+              "percent": 100,
+              "uncovered": 3,
+            },
+            "statements": Object {
+              "percent": 90,
+              "uncovered": 3,
+            },
+          },
+        },
+        Object {
+          "file": "/path/to/project/src/app.ts",
+          "threshold": Object {
+            "branches": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+            "functions": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+            "lines": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+            "statements": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+          },
+        },
+      ],
+      Object {
+        "branches": 95,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Object {
+        "error": 6,
+        "success": 8,
+      },
+    },
+  ],
+}
+`;
+
+exports[`appEvaluation() it should work: outputMetrics 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": 6,
+        "success": 8,
+      },
+      "13:42",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`appEvaluation() it should work: outputTable 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Array [
+        Object {
+          "file": "/path/to/project/src/index.ts",
+          "threshold": Object {
+            "branches": Object {
+              "percent": 90,
+              "uncovered": 3,
+            },
+            "functions": Object {
+              "percent": 90,
+              "uncovered": 3,
+            },
+            "lines": Object {
+              "percent": 100,
+              "uncovered": 3,
+            },
+            "statements": Object {
+              "percent": 90,
+              "uncovered": 3,
+            },
+          },
+        },
+        Object {
+          "file": "/path/to/project/src/app.ts",
+          "threshold": Object {
+            "branches": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+            "functions": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+            "lines": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+            "statements": Object {
+              "percent": 0,
+              "uncovered": Infinity,
+            },
+          },
+        },
+      ],
+      Object {
+        "branches": 95,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;

@@ -5,8 +5,8 @@ jest.mock('glob');
 
 const globMock = (glob as unknown) as jest.Mock;
 
-describe('check the function getFileList()', () => {
-  test('it should return the file list when files are found', async () => {
+describe('getFileList()', () => {
+  test('it should work with found files', async () => {
     expect.assertions(4);
 
     globMock.mockImplementation(
@@ -28,7 +28,7 @@ describe('check the function getFileList()', () => {
     await expect(promise).resolves.toEqual(['src/index.test.ts', 'src/lib/app.test.ts']);
   });
 
-  test('it should return an empty file list when no files are found', async () => {
+  test('it should work with not found files', async () => {
     expect.assertions(4);
 
     globMock.mockImplementation(
@@ -50,7 +50,7 @@ describe('check the function getFileList()', () => {
     await expect(promise).resolves.toEqual([]);
   });
 
-  test('it should throw an error when an error occurs during creation', async () => {
+  test('it should throw an error', async () => {
     expect.assertions(4);
 
     globMock.mockImplementation(

@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`outputError() it should work with error object and without stack: error 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "[red]|> [/red]Error: error-object-without-stack",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`outputError() it should work with test error object: error 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "[red]|> An error was thrown during testing![/red]",
+    ],
+    Array [
+      "[red]|> [/red]",
+    ],
+    Array [
+      "[red]|> Output[/red]",
+    ],
+    Array [
+      "[red]|> [/red]",
+    ],
+    Array [
+      "[red]|> [/red]data-string",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`outputMetrics() it should work with test error object: log 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "[underline]Summary[/underline]",
+    ],
+    Array [
+      "├─ Success: [green]34[/green]",
+    ],
+    Array [
+      "└─ Error:   [red] 6[/red]",
+    ],
+    Array [
+      "",
+    ],
+    Array [
+      "Runtime: 00:00 (mm:ss)",
+    ],
+    Array [
+      "",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`outputStatus() it should work: log 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "",
+    ],
+    Array [
+      "CPU detected: [red]4[/red] ([red]2[/red] are used)",
+    ],
+    Array [
+      "Files found:  [red]5[/red] ([red]3[/red] with tests)",
+    ],
+    Array [
+      "",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`outputTable() it should work: log 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "────────────────┬─────────────────────────────────┬───────────────────────┬───────────────────────┬───────────────────────┬──────────────────────
+ [bold]#[/bold] │ [bold]File[/bold]               │  [bold]% Stmts[/bold] │ [bold]% Branch[/bold] │  [bold]% Funcs[/bold] │ [bold]% Lines[/bold] 
+────────────────┼─────────────────────────────────┼───────────────────────┼───────────────────────┼───────────────────────┼──────────────────────
+              1 │ /path/to/[bold]file-1.ts[/bold] │ [green] 90.00[/green] │ [green] 90.00[/green] │ [green] 90.00[/green] │ [red] 80.00[/red]    
+              2 │ /path/to/[bold]file-1.ts[/bold] │      [red]ERROR[/red] │      [red]ERROR[/red] │      [red]ERROR[/red] │ [red]ERROR[/red]     
+────────────────┴─────────────────────────────────┴───────────────────────┴───────────────────────┴───────────────────────┴──────────────────────
+",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;

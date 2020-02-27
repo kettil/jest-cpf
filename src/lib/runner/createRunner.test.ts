@@ -9,8 +9,8 @@ jest.mock('../files/json');
 const createFolderMock = createFolder as jest.Mock;
 const writeJsonFileMock = writeJsonFile as jest.Mock;
 
-describe('check the function createRunner()', () => {
-  test('it should return a runner object when the subfolder is created', async () => {
+describe('createRunner()', () => {
+  test('it should created a runner', async () => {
     expect.assertions(4);
 
     createFolderMock.mockResolvedValue('/path/to/folder/child-1');

@@ -2,8 +2,8 @@ import { constants } from 'fs';
 import { join, dirname } from 'path';
 import { hasFileAccess } from './fileSystems';
 
-export const getJestConfig = async (cwd: string, filename: string): Promise<Record<string, unknown>> => {
-  const file = join(cwd, filename);
+export const getJestConfig = async (cwdDirectory: string, filename: string): Promise<Record<string, unknown>> => {
+  const file = join(cwdDirectory, filename);
 
   const isReadable = await hasFileAccess(file, constants.R_OK);
 

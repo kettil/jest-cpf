@@ -6,8 +6,8 @@ jest.mock('./runnerSpawn');
 
 const runnerSpawnMock = runnerSpawn as jest.Mock;
 
-describe('check the function runnerInitialization()', () => {
-  test('it should be "isPending" true and a runner test instance was created when one or more test files exist and no runner test instance exists', () => {
+describe('runnerInitialization()', () => {
+  test('it should created test instance', () => {
     expect.assertions(6);
 
     runnerSpawnMock.mockResolvedValue('runner-spawn');
@@ -56,7 +56,7 @@ describe('check the function runnerInitialization()', () => {
     );
   });
 
-  test('it should be "isPending" false and a runner test instance was not created when no test files exist and no runner test instance exists', () => {
+  test('it should created not test instance because no test file', () => {
     expect.assertions(3);
 
     runnerSpawnMock.mockResolvedValue('runner-spawn');
@@ -86,7 +86,7 @@ describe('check the function runnerInitialization()', () => {
     expect(runnerSpawnMock).toHaveBeenCalledTimes(0);
   });
 
-  test('it should be "isPending" false and a runner test instance was not created when a runner test instance exists', () => {
+  test('it should created not test instance because instance exists', () => {
     expect.assertions(3);
 
     runnerSpawnMock.mockResolvedValue('runner-spawn');

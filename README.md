@@ -1,4 +1,4 @@
-# Jest: Coverage per file [BETA]
+# Jest: Coverage per file
 
 ## Table of Contents
 
@@ -41,9 +41,8 @@ The best and fastest way to test is to use Unit Tests.
 All dependencies of a function or class are mocked, so very simple tests can be written.
 A disadvantage of my opinion is that the interface/interaction with the dependency is not tested.
 
-Bei den Integrationstest wird ein großer Teile der Applikation bzw. Library getestet und nur externe Abhängigkeiten werden gemockt.
 During Integration Tests, a large part of the application or library is tested and only external dependencies (e.g. database) are mocked.
-This makes it very difficult to test all code paths.
+This makes it very difficult to test all code paths and it is time intensive.
 
 In my opinion, the combination of both types is the best way.
 So we write "unit tests", but with the enhancement that the direct dependencies of the function/class are not mocked (external dependencies (e.g. database) are always mocked here).
@@ -62,11 +61,10 @@ The tool does not evaluate whether a test is successful or not.
 
 ## Commands
 
-| Command              | Type  | Description                                                    |
-| -------------------- | ----- | -------------------------------------------------------------- |
-| `npm run build`      | Build | Build the library                                              |
-| `npm run test`       | Test  | Run all tests                                                  |
-| `npm run test:watch` | Test  | Watching mode from test                                        |
-| `npm run coverage`   | Test  | Create the coverage table (this tool)                          |
-| `npm run prettier`   | Lint  | Changes the code formatting as defined in the Prettier setting |
-| `npm run lint`       | Lint  | Checks if the eslint rules are followed                        |
+| Command              | Type  | Description                             |
+| -------------------- | ----- | --------------------------------------- |
+| `npm run build`      | Build | Build the library                       |
+| `npm run test`       | Test  | Run all tests                           |
+| `npm run test:watch` | Test  | Watching mode from test                 |
+| `npm run coverage`   | Test  | Create the coverage table (this tool)   |
+| `npm run lint`       | Lint  | Checks if the eslint rules are followed |

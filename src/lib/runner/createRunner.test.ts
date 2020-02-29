@@ -19,6 +19,7 @@ describe('createRunner()', () => {
     const folder = '/path/to/folder';
     const config: JestConfigType = {
       collectCoverage: true,
+      collectCoverageFrom: [],
       coverageDirectory: '/path/to/coverage',
       coveragePathIgnorePatterns: [],
       coverageReporters: [],

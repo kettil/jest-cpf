@@ -35,7 +35,7 @@ The following options are read from the jest config file:
 - `coveragePathIgnorePatterns` _(optional)_
 - `coverageThreshold.global` _(optional, default value 95%)_
 
-### Preview
+### Example
 
 ![Preview](./images/example.png)
 

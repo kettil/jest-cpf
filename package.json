@@ -26,7 +26,7 @@
     "deploy:minor": "npm run deploy:pre && npm version minor -m 'Release of version v%s' && npm run deploy:post",
     "deploy:patch": "npm run deploy:pre && npm version patch -m 'Release of version v%s' && npm run deploy:post",
     "deploy:pre": "npm run prettier:ci && npm run lint:ci && npm run build && npm run test:ci",
-    "deploy:post": "git push && git push --tags && npm publish"
+    "deploy:post": "git push --no-verify && git push --tags --no-verify && npm publish"
   },
   "keywords": [
     "jest",

@@ -35,6 +35,10 @@ The following options are read from the jest config file:
 - `coveragePathIgnorePatterns` _(optional)_
 - `coverageThreshold.global` _(optional, default value 95%)_
 
+### Preview
+
+![Preview](./images/example.png)
+
 ## Philosophy behind the project
 
 The best and fastest way to test is to use Unit Tests.

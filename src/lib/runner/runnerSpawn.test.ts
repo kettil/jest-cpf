@@ -53,6 +53,7 @@ describe('runnerSpawn()', () => {
       rootDir: '/path/to/project',
       roots: ['src', 'pages'],
       testMatch: [],
+      collectCoverageFrom: [],
     };
 
     const promise = runnerSpawn(command, args, { ...config });
@@ -101,6 +102,7 @@ describe('runnerSpawn()', () => {
       rootDir: '/path/to/project',
       roots: ['src', 'pages'],
       testMatch: [],
+      collectCoverageFrom: [],
     };
 
     const promise = runnerSpawn(command, args, { ...config });
